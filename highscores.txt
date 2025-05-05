@@ -1,0 +1,12 @@
+AA,1000
+kk,500
+testAAtest,0
+Adhish,100000
+AAtest116677,1000
+AA Alva,1000000
+AA11111,1000
+Ziraak,1000000
+Adhish AA,0
+Adhish Alva,0
+AAtest5566,0
+AAKKKKK,500
