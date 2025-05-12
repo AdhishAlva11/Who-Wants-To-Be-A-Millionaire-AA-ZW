@@ -76,7 +76,7 @@ public class ManageHighScore {
         
         try(Connection conn = DBManager.getConnection();
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM HIGHSCORES ORDER BY SCOORE DESC"))
+                ResultSet rs = stmt.executeQuery("SELECT * FROM HIGHSCORES ORDER BY SCORE DESC"))
         {
             while(rs.next())
             {
