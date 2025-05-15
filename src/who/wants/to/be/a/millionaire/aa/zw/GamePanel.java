@@ -1,0 +1,123 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package who.wants.to.be.a.millionaire.aa.zw;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+/**
+ *This class creates the GUI game screen 
+ * it shows questions, answer options and a sidebar with prize levels
+ * @author Adhis
+ */
+public class GamePanel extends JFrame {
+    
+    private JLabel questionLabel;  // top question display 
+    private JButton[] optionsButtons;  // Buttons A,B,C,D
+    private JLabel[] prizeLabels; // sidebar to display the amount of money they are on
+    
+    private List<Question> questions; // shuffled question list
+    private int currentQuestionIndex = 0; // what questions are we on
+    private final int [] prizeLevel = {
+        100, 500, 1000, 5000, 10000, 25000, 50000,
+        100000, 250000, 1000000
+    }; 
+    
+    private Player player; // Tracks players score
+    
+    public GamePanel(String playerName) // we send the name from main GUI here
+    {
+        this.player = new Player(playerName); 
+        QuestionBank bank = new QuestionBank("easy.txt", "medium.txt", "hard.txt"); // load text files with questions 
+        this.questions = bank.getMixedDifficultyQuestions();  // setting up mixed questions for gamme
+        
+        
+        // ---Window setup----
+        setTitle("Who Wants to Be a Millionaire"); 
+        setSize(800, 500); 
+        setLayout(new BorderLayout()); 
+        setLocationRelativeTo(null); // centre on screen
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        
+        // --Question Label to display questions---
+        questionLabel = new JLabel("Question will go here", SwingConstants.CENTER); 
+        questionLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        questionLabel.setPreferredSize(new Dimension(0, 100)); // this sets prefered height if questions label, and allows width to epxand automatically
+        add(questionLabel, BorderLayout.NORTH  ); 
+        
+        // -- Answer options buttons ---- 
+        /*
+        / this create the panel to hold 4 answer buttons arranged in a 2x2 grid 
+        */
+        JPanel optionsPanel = new JPanel(new GridLayout(2,2,10,10)); 
+        optionsButtons = new JButton[4]; // array to hold 4 buttons 
+        for(int i = 0; i < 4; i++)
+        {
+            optionsButtons[i] = new JButton((char)('A' + i)+") Option "+ (i+1)); 
+            optionsButtons[i].setFont(new Font("Arail", Font.PLAIN, 16));
+            optionsPanel.add(optionsButtons[i]); 
+        }
+        add(optionsPanel, BorderLayout.CENTER); 
+        
+        // ---SideBar to display prize level----- 
+        /*
+        display prize money in a ladder style
+        */
+        
+        JPanel prizePanel = new JPanel(new GridLayout(10, 1)); 
+        prizeLabels = new JLabel[10]; 
+        for(int i = 9; i >= 0; i--)
+        {
+            prizeLabels[i] = new JLabel("$" + prizeLevel[i], SwingConstants.RIGHT); 
+            prizeLabels[i].setFont(new Font("Arial", Font.BOLD, 16));
+            prizePanel.add(prizeLabels[i]); 
+        }
+        add(prizePanel, BorderLayout.EAST); 
+        
+        displayQuestion(); 
+        setVisible(true); 
+        
+    }
+    
+    private void displayQuestion()
+    {
+        Question q = questions.get(currentQuestionIndex); 
+        questionLabel.setText("Q" + (currentQuestionIndex + 1) + ": "+ q.getQuestionText());
+        
+        String [] options = q.getOptions(); 
+        for(int i = 0; i < 4; i++)
+        {
+            optionsButtons[i].setText(options[i]);
+        }
+        highlightCurrentPrize(); 
+    }
+    
+    private void highlightCurrentPrize()
+    {
+        for(int i = 0; i < prizeLabels.length; i++)
+        {
+            if(i == currentQuestionIndex)
+            {
+                prizeLabels[i].setForeground(Color.BLUE);
+            }
+            else 
+            {
+                prizeLabels[i].setForeground(Color.BLACK);
+            }
+        }
+    }
+    
+    
+    
+}

@@ -41,20 +41,19 @@ public class Main  extends JFrame {
         setLayout(new BorderLayout());  // use BorderLayout for arranging compoenets
     
         //---- top panel welcome message -----  
-        JPanel topPanel = new JPanel(new GridLayout(2,1));  // two rows one for "Welcome" and one for game name
+        JPanel topPanel = new JPanel(new GridLayout(2,1));  // two rows one for "Welcome" and one for game title
         
         JLabel welcomeLabel = new JLabel("Welcome to", SwingConstants.CENTER  ); 
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 20)); // bold largee font for welcome
         
-        
+        //---- game name display 
         JLabel titleLabel = new JLabel("Who Wants to Be a Millionaire", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));     // bigger font for game title
         titleLabel.setForeground(new Color(0, 51, 102));           // Dark blue color
 
         topPanel.add(welcomeLabel);
         topPanel.add(titleLabel);
-        add(topPanel, BorderLayout.NORTH);  // add to the top of the window
-        
+        add(topPanel, BorderLayout.NORTH);  // add both labels to the top panel and position it at the top of the window
         //----Centre panel for name input -------
         
         JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10)); // 2 rows  vertical spacing
