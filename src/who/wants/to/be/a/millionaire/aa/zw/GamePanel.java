@@ -137,6 +137,12 @@ public class GamePanel extends JFrame {
                 prizeLabels[i].setForeground(Color.BLACK);
             }
         }
+        
+    }
+    //to do tomorrow
+     private void checkAnswer(int selectedIndex) {
+        // Logic to be added next
+        System.out.println("Option " + (char) ('A' + selectedIndex) + " clicked.");
     }
 
 }
