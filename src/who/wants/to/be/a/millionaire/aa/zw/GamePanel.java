@@ -224,6 +224,9 @@ public class GamePanel extends JFrame {
         playAgainButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createVerticalStrut(10)); // spacing before next button
         panel.add(playAgainButton);
+        
+        leaderBoardButton.setFocusable(false);
+        playAgainButton.setFocusable(false);
 
         /*
         sets up pop up dialog window to show panel above 
@@ -240,6 +243,7 @@ public class GamePanel extends JFrame {
 
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose(); // close game over window
+                dispose();
                 new LeaderBoardWindow(); // show leaderboard
             }
         });

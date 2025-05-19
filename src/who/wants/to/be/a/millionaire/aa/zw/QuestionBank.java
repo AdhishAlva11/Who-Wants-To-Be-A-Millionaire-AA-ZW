@@ -57,6 +57,8 @@ public class QuestionBank {
         mixed.addAll(easyQuestions.subList(0, Math.min(3, easyQuestions.size())));
         mixed.addAll(mediumQuestions.subList(0, Math.min(4, mediumQuestions.size())));
         mixed.addAll(hardQuestions.subList(0, Math.min(3, hardQuestions.size())));
+        
+        Collections.shuffle(mixed);
 
         return mixed;
     }
