@@ -162,35 +162,26 @@ public class GamePanel extends JFrame {
             player.updateScore(prizeLevel[currentQuestionIndex]); // update player socre 
 
             // simulate a delay for 1 second then move onto next question 
-            Timer delay = new Timer(1000, new ActionListener() 
-            {
-                public void actionPerformed(ActionEvent evt) 
-                {
+            Timer delay = new Timer(1000, new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
                     currentQuestionIndex++;
                     if (currentQuestionIndex < questions.size()) {
                         displayQuestion();// load next question 
-                    } 
-                    else 
-                    {
+                    } else {
                         showGameOver(); // end game; 
                     }
                 }
             });
-            
-             delay.setRepeats(false); // run only once 
-             delay.start(); // start timer
 
-        } 
-        
-        
-        else {
+            delay.setRepeats(false); // run only once 
+            delay.start(); // start timer
+
+        } else {
             optionsButtons[selectedIndex].setBackground(Color.RED);// colour for wrong option 
             optionsButtons[correctIndex].setBackground(Color.GREEN); // show correct colour in greeen
-            
-             showGameOver(); // end the game immediatley
-        }
 
-       
+            showGameOver(); // end the game immediatley
+        }
 
     }
 
@@ -201,43 +192,71 @@ public class GamePanel extends JFrame {
      */
     private void showGameOver() {
         ManageHighScore manager = new ManageHighScore(); // handles score saving
-        
+
         manager.updateScore(player.getName(), player.getScore()); // update score in highscore class connected to our database 
-        
+
         // -----  custom game over panel  ----- 
-        
-        JPanel panel = new JPanel(new BorderLayout(10, 10)); // set layout with spacing 
-        
-        panel.add(new JLabel("Game Over!"), BorderLayout.NORTH); // add label at the top of panel title Game over 
-        //the below display player info in the center of panel 
-        panel.add(new JLabel("Player: " + player.getName() + "  | Score: $" + player.getScore()), BorderLayout.CENTER ); 
-        
-        
-        //  ---- creating button to view Leader board  ----- 
-        JButton leaderBoardButton = new JButton("View Leaderboard"); 
-        panel.add(leaderBoardButton, BorderLayout.SOUTH);  // place button at the bottom of the panel
+        JPanel panel = new JPanel();
+
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // stack elements vertically 
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20)); // add paddig to all sides
+
+        JLabel gameOverLabel = new JLabel("Game Over!", SwingConstants.CENTER);
+        gameOverLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        gameOverLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // center inside panel 
+        panel.add(gameOverLabel); // add to top of panel 
+
+        // --- Label to show player name and score 
+        JLabel infoLabel = new JLabel("Player: " + player.getName() + " | Score: $" + player.getScore());
+        infoLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        infoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createVerticalStrut(10)); // vertical spacing
+        panel.add(infoLabel); // add below title
+
+        /// Button to open leaderboard
+        JButton leaderBoardButton = new JButton("View Leaderboard");
+        leaderBoardButton.setAlignmentX(Component.CENTER_ALIGNMENT); // center it
+        panel.add(Box.createVerticalStrut(15)); // spacing before button
+        panel.add(leaderBoardButton);
+
+        // Button to restart the game
+        JButton playAgainButton = new JButton("Play Again");
+        playAgainButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createVerticalStrut(10)); // spacing before next button
+        panel.add(playAgainButton);
+
         /*
         sets up pop up dialog window to show panel above 
         this creates a window over the gamepanel window  until closed 
-        */
-        JDialog dialog = new JDialog(this, "Game Over", true); // this means parent window, "Game Over" title of dialog window, true means block rest of GamePanel 
-        dialog.getContentPane().add(panel); // put panel inside dialog window 
-        dialog.pack(); // resize dialog window to fit content inside 
-        dialog.setLocationRelativeTo(this); // position dislog window to pop up in the center of parent window(GamePanel)
-        
-        
+         */
+        // ----- dialog window setup ------
+        JDialog dialog = new JDialog(this, "Game Over", true); // this refers to game panel. Game Over is dialog box name. true means modal meaning they must close before interacting with game window again
+        dialog.getContentPane().add(panel); // put our custom panel inside the dialog
+        dialog.setSize(300, 200);           // set the size of the dialog window
+        dialog.setLocationRelativeTo(this); // center it on top of GamePanel window
+
         // ----  add logic to leader board button  ----- 
         leaderBoardButton.addActionListener(new ActionListener() {
-       
+
             public void actionPerformed(ActionEvent e) {
-            dialog.dispose(); // close game over window
-            new LeaderBoardWindow(); // show leaderboard
-        }
+                dialog.dispose(); // close game over window
+                new LeaderBoardWindow(); // show leaderboard
+            }
         });
-        
+
+        //--- add logic to  play again button --- 
+        playAgainButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose(); // close the pop up
+                dispose();        // close the current GamePanel window
+                new Main();       // reopen the welcome screen (Main class)
+            }
+        });
+
         dialog.setVisible(true); // display the dialog (wait until closed) 
-        dispose(); //close game panel 
         
+
     }
 
 }
