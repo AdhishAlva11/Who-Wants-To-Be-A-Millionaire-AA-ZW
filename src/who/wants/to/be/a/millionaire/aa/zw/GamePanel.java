@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.Timer;
+
 /**
  * This class creates the GUI game screen it shows questions, answer options and
  * a sidebar with prize levels
@@ -23,7 +24,7 @@ public class GamePanel extends JFrame {
 
     private List<Question> questions; // shuffled question list
     private int currentQuestionIndex = 0; // what questions are we on
-    private final int[] prizeLevel = {    // prize ladder values 
+    private final int[] prizeLevel = { // prize ladder values 
         100, 500, 1000, 5000, 10000, 25000, 50000,
         100000, 250000, 1000000
     };
@@ -36,10 +37,7 @@ public class GamePanel extends JFrame {
         QuestionBank bank = new QuestionBank("easy.txt", "medium.txt", "hard.txt"); // load text files with questions 
         this.questions = bank.getMixedDifficultyQuestions();  // setting up mixed questions for gamme
 
-        
-        
         // ---GUI Window  set up----
-        
         setTitle("Who Wants to Be a Millionaire");
         setSize(850, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,8 +55,6 @@ public class GamePanel extends JFrame {
         questionPanel.add(questionLabel, BorderLayout.CENTER);
         add(questionPanel, BorderLayout.NORTH);
 
-        
-        
         // -- Answer options buttons ---- 
         /*
         / this create the panel to hold 4 answer buttons arranged in a 2x2 grid 
@@ -67,7 +63,7 @@ public class GamePanel extends JFrame {
         optionsPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); //padding around the grid 
         optionsButtons = new JButton[4]; // array to hold 4 buttons 
         for (int i = 0; i < 4; i++) {
-            
+
             optionsButtons[i] = new JButton((char) ('A' + i) + ": Option " + (i + 1));
             optionsButtons[i].setFont(new Font("Arail", Font.PLAIN, 16));
             optionsButtons[i].setForeground(Color.WHITE); // Text color white 
@@ -76,16 +72,15 @@ public class GamePanel extends JFrame {
             optionsButtons[i].setFocusPainted(false); // clean lock
             optionsButtons[i].setBorderPainted(false);
             optionsButtons[i].setOpaque(true);
-            
+
             //check if answer is correct
-            final int index = i; 
-            optionsButtons[i].addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e)
-                {
-                    checkAnswer(index); 
+            final int index = i;
+            optionsButtons[i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    checkAnswer(index);
                 }
             });
-            
+
             optionsPanel.add(optionsButtons[i]); // add gird to panel 
 
         }
@@ -97,8 +92,8 @@ public class GamePanel extends JFrame {
          */
         JPanel prizePanel = new JPanel(new GridLayout(10, 1, 5, 5)); // 10 rows for 10 prizes 
         prizeLabels = new JLabel[10];
-        
-        for (int i = 9; i >= 0; i--) { 
+
+        for (int i = 9; i >= 0; i--) {
             prizeLabels[i] = new JLabel("$" + prizeLevel[i], SwingConstants.RIGHT);
             prizeLabels[i].setFont(new Font("Arial", Font.BOLD, 14));
             prizePanel.add(prizeLabels[i]);
@@ -117,7 +112,7 @@ public class GamePanel extends JFrame {
     /*
     This  method shows the current question and options on the screen
     it resets button states and highlights the current prize level
-    */
+     */
     private void displayQuestion() {
         Question q = questions.get(currentQuestionIndex); // get current question 
         questionLabel.setText("Q" + (currentQuestionIndex + 1) + ": " + q.getQuestionText()); // set question 
@@ -134,7 +129,7 @@ public class GamePanel extends JFrame {
     /*
     This method highlights the current question level on the prize ladder
     Orange is used to indicate the active question 
-    */
+     */
     private void highlightCurrentPrize() {
         for (int i = 0; i < prizeLabels.length; i++) {
             if (i == currentQuestionIndex) {
@@ -143,60 +138,106 @@ public class GamePanel extends JFrame {
                 prizeLabels[i].setForeground(Color.BLACK); // other options 
             }
         }
-        
+
     }
+
     /*
+    ------Check Answer------- 
     This method checks if the selected answer is correct or wrong 
     it changes the colour button and updates the score 
-    */
-     private void checkAnswer(int selectedIndex) {
-         
-         Question current = questions.get(currentQuestionIndex); 
-         String correctAnswer = current.getCorrectAnswer(); // get the correct answer  
-         int correctIndex = correctAnswer.charAt(0) - 'A'; //comvert letter to numbver to compare with selected option 
-         
+     */
+    private void checkAnswer(int selectedIndex) {
+
+        Question current = questions.get(currentQuestionIndex);
+        String correctAnswer = current.getCorrectAnswer(); // get the correct answer  
+        int correctIndex = correctAnswer.charAt(0) - 'A'; //comvert letter to numbver to compare with selected option 
+
         //disable all buttons after selection
-         for(JButton btn : optionsButtons)
-         {
-             btn.setEnabled(false);
-         }
-         // check if its correct 
-         if(selectedIndex == correctIndex)
-         {
-              optionsButtons[selectedIndex].setBackground(Color.GREEN); // if option chose is correct it goes green
-              player.updateScore(prizeLevel[currentQuestionIndex]); // update player socre 
-         }
-         else 
-         {
-             optionsButtons[selectedIndex].setBackground(Color.RED);// colour for wrong option 
-             optionsButtons[correctIndex].setBackground(Color.GREEN); // show correct colour in greeen
-         }
-         
-         // simulate a delay for 1 second then move onto next question 
-          Timer delay = new Timer(1000, new ActionListener() {
-            public void actionPerformed(ActionEvent evt) 
+        for (JButton btn : optionsButtons) {
+            btn.setEnabled(false);
+        }
+        // check if its correct 
+        if (selectedIndex == correctIndex) {
+            optionsButtons[selectedIndex].setBackground(Color.GREEN); // if option chose is correct it goes green
+            player.updateScore(prizeLevel[currentQuestionIndex]); // update player socre 
+
+            // simulate a delay for 1 second then move onto next question 
+            Timer delay = new Timer(1000, new ActionListener() 
             {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < questions.size()) 
+                public void actionPerformed(ActionEvent evt) 
                 {
-                    displayQuestion();// load next question 
-                } else {
-                    showGameOver(); // end game; 
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < questions.size()) {
+                        displayQuestion();// load next question 
+                    } 
+                    else 
+                    {
+                        showGameOver(); // end game; 
+                    }
                 }
-            }
+            });
+            
+             delay.setRepeats(false); // run only once 
+             delay.start(); // start timer
+
+        } 
+        
+        
+        else {
+            optionsButtons[selectedIndex].setBackground(Color.RED);// colour for wrong option 
+            optionsButtons[correctIndex].setBackground(Color.GREEN); // show correct colour in greeen
+            
+             showGameOver(); // end the game immediatley
+        }
+
+       
+
+    }
+
+    /*
+    --------Game Over------ 
+     This method shows a custom pop up when the game ends 
+    it also updated high the high score file and allows players to open leader board 
+     */
+    private void showGameOver() {
+        ManageHighScore manager = new ManageHighScore(); // handles score saving
+        
+        manager.updateScore(player.getName(), player.getScore()); // update score in highscore class connected to our database 
+        
+        // -----  custom game over panel  ----- 
+        
+        JPanel panel = new JPanel(new BorderLayout(10, 10)); // set layout with spacing 
+        
+        panel.add(new JLabel("Game Over!"), BorderLayout.NORTH); // add label at the top of panel title Game over 
+        //the below display player info in the center of panel 
+        panel.add(new JLabel("Player: " + player.getName() + "  | Score: $" + player.getScore()), BorderLayout.CENTER ); 
+        
+        
+        //  ---- creating button to view Leader board  ----- 
+        JButton leaderBoardButton = new JButton("View Leaderboard"); 
+        panel.add(leaderBoardButton, BorderLayout.SOUTH);  // place button at the bottom of the panel
+        /*
+        sets up pop up dialog window to show panel above 
+        this creates a window over the gamepanel window  until closed 
+        */
+        JDialog dialog = new JDialog(this, "Game Over", true); // this means parent window, "Game Over" title of dialog window, true means block rest of GamePanel 
+        dialog.getContentPane().add(panel); // put panel inside dialog window 
+        dialog.pack(); // resize dialog window to fit content inside 
+        dialog.setLocationRelativeTo(this); // position dislog window to pop up in the center of parent window(GamePanel)
+        
+        
+        // ----  add logic to leader board button  ----- 
+        leaderBoardButton.addActionListener(new ActionListener() {
+       
+            public void actionPerformed(ActionEvent e) {
+            dialog.dispose(); // close game over window
+            new LeaderBoardWindow(); // show leaderboard
+        }
         });
-        delay.setRepeats(false); 
-        delay.start(); // start timeer
-         
+        
+        dialog.setVisible(true); // display the dialog (wait until closed) 
+        dispose(); //close game panel 
         
     }
-     /*
-     this method shows a pop up with the players final score and ends the game 
-     */
-     private void showGameOver()
-     {
-         JOptionPane.showMessageDialog(this, "Game Over! \nYou won: $" + player.getScore());
-         dispose(); // close game window
-     }
 
 }
