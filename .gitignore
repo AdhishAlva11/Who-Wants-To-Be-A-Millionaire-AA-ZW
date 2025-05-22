@@ -23,28 +23,15 @@
 hs_err_pid*
 replay_pid*
 /dist/
-nbproject/private/private.xml
-database/HighScoresDB/log/logmirror.ctrl
-/database/HighScoresDB
-/database/HighScoresDB
-database/HighScoresDB/db.lck
-database/HighScoresDB/log/log.ctrl
-database/HighScoresDB/log/log1.dat
-database/HighScoresDB/log/logmirror.ctrl
-database/HighScoresDB/seg0/c4a1.dat
-database/HighScoresDB/seg0/c60.dat
-database/HighScoresDB/seg0/c81.dat
-database/HighScoresDB/db.lck
-database/HighScoresDB/log/log.ctrl
-database/HighScoresDB/log/log1.dat
-database/HighScoresDB/log/logmirror.ctrl
-database/HighScoresDB/seg0/c4a1.dat
-database/HighScoresDB/seg0/c60.dat
-database/HighScoresDB/seg0/c81.dat
-database/HighScoresDB/db.lck
-database/HighScoresDB/log/log.ctrl
-database/HighScoresDB/log/log1.dat
-database/HighScoresDB/log/logmirror.ctrl
-database/HighScoresDB/seg0/c4a1.dat
-database/HighScoresDB/seg0/c60.dat
-database/HighScoresDB/seg0/c81.dat
+# Ignore NetBeans private config and build folders
+/dist/
+/nbproject/private/
+
+# Ignore Derby embedded DB runtime files
+/database/HighScoresDB/
+
+# Optional: Ignore all database-related formats
+*.dat
+*.lck
+*.ctrl
+*.properties
