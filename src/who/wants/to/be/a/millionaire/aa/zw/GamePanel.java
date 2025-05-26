@@ -172,7 +172,7 @@ public class GamePanel extends JFrame {
     /*
     --------Game Over------ 
      This method shows a custom pop up when the game ends 
-    it also updated high the high score file and allows players to open leader board 
+     it also updated high the high score file and allows players to open leader board 
      */
     private void showGameOver() {
 

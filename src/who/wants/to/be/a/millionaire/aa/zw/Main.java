@@ -24,28 +24,27 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 /**
- *This class is the starting point of the program 
- * it shows a simple GUI window where the user can input their name
- * and click start game button to start game
+ * This class is the starting point of the program it shows a simple GUI window
+ * where the user can input their name and click start game button to start game
+ *
  * @author Adhis
  */
-public class Main  extends JFrame {
-    
+public class Main extends JFrame {
+
     // constructor sets up the GUI window 
-    public Main () 
-    {
+    public Main() {
         setTitle("Who Wants to Be a Millionaire"); //window title
         setSize(400, 280); // set window size (width x height) 
         setLocationRelativeTo(null); // centre window on screen 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());  // use BorderLayout for arranging compoenets
-    
+
         //---- top panel welcome message -----  
-        JPanel topPanel = new JPanel(new GridLayout(2,1));  // two rows one for "Welcome" and one for game title
-        
-        JLabel welcomeLabel = new JLabel("Welcome to", SwingConstants.CENTER  ); 
+        JPanel topPanel = new JPanel(new GridLayout(2, 1));  // two rows one for "Welcome" and one for game title
+
+        JLabel welcomeLabel = new JLabel("Welcome to", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 20)); // bold largee font for welcome
-        
+
         //---- game name display 
         JLabel titleLabel = new JLabel("Who Wants to Be a Millionaire", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));     // bigger font for game title
@@ -55,7 +54,7 @@ public class Main  extends JFrame {
         topPanel.add(titleLabel);
         add(topPanel, BorderLayout.NORTH);  // add both labels to the top panel and position it at the top of the window
         //----Centre panel for name input -------
-        
+
         JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10)); // 2 rows  vertical spacing
 
         JLabel nameLabel = new JLabel("Enter Your Name:", SwingConstants.CENTER);
@@ -68,37 +67,30 @@ public class Main  extends JFrame {
         centerPanel.add(nameLabel);
         centerPanel.add(nameField);
         add(centerPanel, BorderLayout.CENTER); // Add center panel
-        
-        
+
         // ---- Bottom start button  ---- 
         JButton startButton = new JButton("Start Game");
         add(startButton, BorderLayout.SOUTH); // Add to bottom of layout
 
-        
         //private method when user clicks start button 
-        startButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+        startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText().trim(); // get the entered name
-                if(!name.isEmpty())
-                {
-                    dispose(); 
+                if (!name.isEmpty()) {
+                    dispose();
                     new GamePanel(name); // open gamePanel GUI. 
-                }
-                else 
-                {
+                } else {
                     //if name is empty, show pop up message  
                     JOptionPane.showMessageDialog(Main.this, "Please enter your name. ");
                 }
             }
-                    
+
         });
-        
-        setVisible(true); 
-        
-        
+
+        setVisible(true);
+
     }
+
     public static void main(String[] args) {
         // run the GUI code safely on the event dispatch thread (EDT)
         SwingUtilities.invokeLater(new Runnable() {
@@ -106,7 +98,6 @@ public class Main  extends JFrame {
                 new Main(); // Show the main menu window
             }
         });
-        
+
     }
 }
-
