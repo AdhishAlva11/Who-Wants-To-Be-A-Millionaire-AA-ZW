@@ -22,6 +22,11 @@ public class GamePanel extends JFrame {
     private JLabel[] prizeLabels; // sidebar to display the amount of money they are on
     private final int[] prizeLevel = UIConstantsGUI.PRIZE_LEVELS; // prize levels 
     private QuizController controller;  // handles game logic and player data 
+    private JButton audienceButton, fiftyFiftyButton, switchQuestionButton; // button for lifelines
+
+    private AskTheAudience audienceLifeline = new AskTheAudience();
+    private FiftyFifty fiftyFiftyLifeline = new FiftyFifty();
+    private SwitchQuestion switchLifeline = new SwitchQuestion();
 
     public GamePanel(String playerName) // we send the name from main GUI here
     {
@@ -93,6 +98,116 @@ public class GamePanel extends JFrame {
 
         displayQuestion(); // show first question 
         setVisible(true); // display full window 
+
+        /*
+         -------Life line panel -------
+        
+         */
+        JPanel lifelinePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+
+        audienceButton = new JButton("Ask the Audience");
+        fiftyFiftyButton = new JButton("50:50");
+        switchQuestionButton = new JButton("Switch Question");
+
+        // make them consistent
+        audienceButton.setFocusable(false);
+        fiftyFiftyButton.setFocusable(false);
+        switchQuestionButton.setFocusable(false);
+
+        audienceButton.setPreferredSize(new Dimension(150, 40));
+        fiftyFiftyButton.setPreferredSize(new Dimension(150, 40));
+        switchQuestionButton.setPreferredSize(new Dimension(150, 40));
+
+        // add to panel
+        lifelinePanel.add(audienceButton);
+        lifelinePanel.add(fiftyFiftyButton);
+        lifelinePanel.add(switchQuestionButton);
+
+        // add panel to layout
+        add(lifelinePanel, BorderLayout.SOUTH);
+
+        // ---- actions listner for life line buttons-----
+        audienceButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Get vote distribution from AskTheAudience lifeline
+                int[] votes = audienceLifeline.getAudienceVote(controller.getCurrentQuestion());
+
+                // Check if the lifeline was already used
+                if (votes == null) {
+                    JOptionPane.showMessageDialog(GamePanel.this, "Ask the Audience already used!");
+                    return;
+                }
+
+                // build a message string to show the vote percentages
+                StringBuilder resultMessage = new StringBuilder("Audience vote results:\n\n");
+                String[] labels = {"A", "B", "C", "D"};
+                String[] options = controller.getCurrentQuestion().getOptions();
+
+                for (int i = 0; i < votes.length; i++) {
+                    resultMessage.append(labels[i])
+                            .append(") ")
+                            .append(options[i].substring(3)) // Skip "A) ", "B) ", etc.
+                            .append(" - ")
+                            .append(votes[i])
+                            .append("%\n");
+                }
+
+                // Show the vote distribution in a dialog box
+                JOptionPane.showMessageDialog(GamePanel.this, resultMessage.toString());
+
+                // Disable the lifeline button after use
+                audienceButton.setEnabled(false);
+            }
+        });
+
+        // --- 50:50 action listner button
+        fiftyFiftyButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                // call lifeline logic to get two indicies we want to keep
+                // one correct option and one random incorrect option
+                int[] indicesToKeep = fiftyFiftyLifeline.useFiftyFifty(controller.getCurrentQuestion());
+                // check if life lines hasnt already been used
+
+                if (indicesToKeep != null) {
+                    for (int i = 0; i < optionsButtons.length; i++) // loop  through all options buttons (A,B,C,D)
+                    {
+                        /*
+                        if correct index is not one of the two we want to keep
+                        then disable button and visually dim it
+                         */
+                        if (i != indicesToKeep[0] && i != indicesToKeep[1]) {
+                            optionsButtons[i].setEnabled(false); // disable the other two
+                            optionsButtons[i].setBackground(Color.DARK_GRAY); // visually dim
+                        }
+                    }
+                    fiftyFiftyButton.setEnabled(false); // disable the button after use
+                } else // if life line was already used, show a warning pop up 
+                {
+                    JOptionPane.showMessageDialog(GamePanel.this, "50:50 already used!");
+                }
+            }
+        });
+
+        // --- switch question action listner 
+        /*
+        works with our current switch question class to load in new question from file read into 
+        the switch question class. allows quix to flow naturally
+         */
+        switchQuestionButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Question newQ = switchLifeline.switchUsed();
+                if (newQ != null) // check if we got a new question (check if life line was used before) 
+                {
+                    controller.replaceCurrentQuestion(newQ); // replace current question with new one(same position in list) 
+                    displayQuestion(); // refresh screen to display new loaded question
+                    switchQuestionButton.setEnabled(false); // disable after use
+                } else // if used show warning pop up
+                {
+                    JOptionPane.showMessageDialog(GamePanel.this, "Switch Question already used!");
+                }
+            }
+        });
 
     }
 
