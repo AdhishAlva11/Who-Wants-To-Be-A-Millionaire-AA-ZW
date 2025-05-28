@@ -31,7 +31,7 @@ public class AskTheAudienceTest {
             AskTheAudience ata = new AskTheAudience();
             ata.use(q);
 
-            // Extract vote percentages from printed output
+            // get vote percentages from printed output
             String printed = output.toString();
             Pattern pattern = Pattern.compile("- (\\d+)%");
             Matcher matcher = pattern.matcher(printed);
@@ -44,7 +44,6 @@ public class AskTheAudienceTest {
             assertEquals("Total audience vote should be 100%", 100, total);
 
         } finally {
-            // Restore original System.out
             System.setOut(originalOut);
         }
     }
@@ -64,7 +63,7 @@ public class AskTheAudienceTest {
 
             AskTheAudience ata = new AskTheAudience();
             ata.use(q);  // First use
-            ata.use(q);  // Second use should show "already used" message
+            ata.use(q);  // Second use of lifeline so should show "already used" message
 
             String printed = output.toString();
             int useCount = printed.split("Audience has voted:").length - 1;
@@ -75,5 +74,4 @@ public class AskTheAudienceTest {
             System.setOut(originalOut);
         }
     }
-
 }
