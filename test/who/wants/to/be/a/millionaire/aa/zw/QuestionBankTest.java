@@ -4,51 +4,34 @@
  */
 package who.wants.to.be.a.millionaire.aa.zw;
 
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 /**
  *
  * @author ziraa
  */
+import org.junit.*;
+import java.io.*;
+import java.util.*;
+
+import static org.junit.Assert.*;
+
 public class QuestionBankTest {
-    
-    public QuestionBankTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+
+    @Test
+    public void testLoadsAllDifficultyLevels() {
+        QuestionBank qb = new QuestionBank("easy.txt", "medium.txt", "hard.txt");
+        List<Question> mixed = qb.getMixedDifficultyQuestions();
+
+        // Should return up to 10 total questions: 3 easy, 4 medium, 3 hard
+        assertTrue(mixed.size() <= 10);
     }
 
-    /**
-     * Test of getMixedDifficultyQuestions method, of class QuestionBank.
-     */
     @Test
-    public void testGetMixedDifficultyQuestions() {
-        System.out.println("getMixedDifficultyQuestions");
-        QuestionBank instance = null;
-        List<Question> expResult = null;
-        List<Question> result = instance.getMixedDifficultyQuestions();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testShuffledOrder() {
+        QuestionBank qb = new QuestionBank("easy.txt", "medium.txt", "hard.txt");
+        List<Question> list1 = qb.getMixedDifficultyQuestions();
+        List<Question> list2 = qb.getMixedDifficultyQuestions();
+
+        // It’s randomized, so not guaranteed, but this gives a basic check
+        assertNotEquals(list1.toString(), list2.toString());
     }
-    
 }

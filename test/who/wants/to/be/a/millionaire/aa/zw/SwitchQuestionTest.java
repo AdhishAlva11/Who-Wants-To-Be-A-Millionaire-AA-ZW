@@ -4,63 +4,38 @@
  */
 package who.wants.to.be.a.millionaire.aa.zw;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 /**
  *
  * @author ziraa
  */
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import java.io.*;
+import java.util.Arrays;
+
 public class SwitchQuestionTest {
-    
-    public SwitchQuestionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+
+    private final String testFileName = "switch.txt";
+
+    @Test
+    public void testSwitchReturnsQuestion() throws IOException {
+
+        SwitchQuestion sw = new SwitchQuestion();
+        Question newQ = sw.switchUsed();
+
+        assertNotNull("Should return a question on first use", newQ);
+        assertTrue("Returned object must be a Question", newQ instanceof Question);
     }
 
-    /**
-     * Test of use method, of class SwitchQuestion.
-     */
     @Test
-    public void testUse() {
-        System.out.println("use");
-        Question question = null;
-        SwitchQuestion instance = new SwitchQuestion();
-        instance.use(question);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    public void testSwitchCanOnlyBeUsedOnce() throws IOException {
 
-    /**
-     * Test of switchUsed method, of class SwitchQuestion.
-     */
-    @Test
-    public void testSwitchUsed() {
-        System.out.println("switchUsed");
-        SwitchQuestion instance = new SwitchQuestion();
-        Question expResult = null;
-        Question result = instance.switchUsed();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        SwitchQuestion sw = new SwitchQuestion();
+        Question first = sw.switchUsed();
+        Question second = sw.switchUsed(); // Should be null after use
+
+        assertNotNull("First use should return a question", first);
+        assertNull("Second use should return null", second);
     }
-    
 }

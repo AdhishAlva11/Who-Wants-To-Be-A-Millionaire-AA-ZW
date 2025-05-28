@@ -4,78 +4,35 @@
  */
 package who.wants.to.be.a.millionaire.aa.zw;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 /**
  *
  * @author ziraa
  */
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class QuestionTest {
-    
-    public QuestionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+
+    @Test
+    public void testQuestionCreation() {
+        String text = "What is the capital of France?";
+        String[] options = {"A) Paris", "B) London", "C) Rome", "D) Berlin"};
+        String correct = "A";
+
+        Question q = new Question(text, options, correct);
+
+        assertEquals(text, q.getQuestionText());
+        assertArrayEquals(options, q.getOptions());
+        assertEquals(correct, q.getCorrectAnswer());
     }
 
-    /**
-     * Test of getQuestionText method, of class Question.
-     */
     @Test
-    public void testGetQuestionText() {
-        System.out.println("getQuestionText");
-        Question instance = null;
-        String expResult = "";
-        String result = instance.getQuestionText();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testEmptyQuestion() {
+        Question q = new Question("", new String[]{"", "", "", ""}, "");
+
+        assertEquals("", q.getQuestionText());
+        assertArrayEquals(new String[]{"", "", "", ""}, q.getOptions());
+        assertEquals("", q.getCorrectAnswer());
     }
 
-    /**
-     * Test of getOptions method, of class Question.
-     */
-    @Test
-    public void testGetOptions() {
-        System.out.println("getOptions");
-        Question instance = null;
-        String[] expResult = null;
-        String[] result = instance.getOptions();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCorrectAnswer method, of class Question.
-     */
-    @Test
-    public void testGetCorrectAnswer() {
-        System.out.println("getCorrectAnswer");
-        Question instance = null;
-        String expResult = "";
-        String result = instance.getCorrectAnswer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
