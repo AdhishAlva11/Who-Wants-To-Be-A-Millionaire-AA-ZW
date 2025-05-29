@@ -30,7 +30,7 @@ public class GamePanel extends JFrame {
 
     public GamePanel(String playerName) // we send the name from main GUI here
     {
-        this.controller = new QuizController(playerName);
+        this.controller = new QuizController(playerName); // this sends name to controller
 
         // ---GUI Window  set up----
         setTitle("Who Wants to Be a Millionaire");
@@ -42,7 +42,7 @@ public class GamePanel extends JFrame {
         // --Question Panel to display questions at top---
         questionLabel = new JLabel("Question will go here", SwingConstants.CENTER);
         questionLabel.setFont(UIConstantsGUI.QUESTION_FONT);
-        questionLabel.setPreferredSize(new Dimension(0, 80)); // this sets prefered height if questions label, and allows width to epxand automatically
+        questionLabel.setPreferredSize(new Dimension(0, 80)); // this sets prefered height of questions label, and allows width to epxand automatically
 
         //-- Question panel to wrap question in padding
         JPanel questionPanel = new JPanel(new BorderLayout());
@@ -68,7 +68,7 @@ public class GamePanel extends JFrame {
             optionsButtons[i].setOpaque(true);
 
             //check if answer is correct
-            final int index = i; // need final for innder class 
+            final int index = i; // need final for inner class 
 
             optionsButtons[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
