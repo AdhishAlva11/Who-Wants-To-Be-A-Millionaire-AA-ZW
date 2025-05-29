@@ -4,77 +4,38 @@
  */
 package who.wants.to.be.a.millionaire.aa.zw;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
 /**
  *
  * @author ziraa
  */
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class PlayerTest {
-    
-    public PlayerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
-    /**
-     * Test of getName method, of class Player.
-     */
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        Player instance = null;
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testPlayerInitialization() {
+        Player p = new Player("Adhish");
+
+        assertEquals("Adhish", p.getName());
+        assertEquals(0, p.getScore());
     }
 
-    /**
-     * Test of getScore method, of class Player.
-     */
-    @Test
-    public void testGetScore() {
-        System.out.println("getScore");
-        Player instance = null;
-        int expResult = 0;
-        int result = instance.getScore();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of updateScore method, of class Player.
-     */
     @Test
     public void testUpdateScore() {
-        System.out.println("updateScore");
-        int amount = 0;
-        Player instance = null;
-        instance.updateScore(amount);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Player p = new Player("Zi");
+        p.updateScore(500);
+
+        assertEquals(500, p.getScore());
     }
-    
+
+    @Test
+    public void testMultipleScoreUpdates() {
+        Player p = new Player("Zi");
+        p.updateScore(300);
+        assertEquals(300, p.getScore());
+
+        p.updateScore(750);
+        assertEquals(750, p.getScore());
+    }
 }
