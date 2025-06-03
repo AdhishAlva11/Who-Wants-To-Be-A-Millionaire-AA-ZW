@@ -49,11 +49,7 @@ public class FiftyFiftyTest {
 
     @Test
     public void testFiftyFiftyCanOnlyBeUsedOnce() {
-        Question q = new Question(
-                "Test Question",
-                new String[]{"A) A", "B) B", "C) C", "D) D"},
-                "C"
-        );
+        Question q = new Question("Test Question", new String[]{"A) A", "B) B", "C) C", "D) D"},"C");
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
