@@ -23,3 +23,15 @@
 hs_err_pid*
 replay_pid*
 /dist/
+# Ignore NetBeans private config and build folders
+/dist/
+/nbproject/private/
+
+# Ignore Derby embedded DB runtime files
+/database/HighScoresDB/
+
+# Optional: Ignore all database-related formats
+*.dat
+*.lck
+*.ctrl
+*.properties

@@ -14,59 +14,71 @@ import java.util.Random;
 /**
  *
  * @author Adhis
+ * This class has  been updated for GUI version
+ * 
+ * This class implements the Ask the Audience lifeline for the quiz game
+ * 
+ * had to be updated for GUI (updates) 
+ * - originally this life line printed results to the console. 
+ * now it returns an int [] array with vote percentage for each option (A,B,C,D)
+ * this makes is easy for the GUI to display results in a pop up.
+ * 
+ * it gets returned in the below formate 
+ *  - votes[0] = percentage for A
+ *  - votes[1] = percentage for B
+ *  - votes[2] = percentage for C
+ *  - votes[3] = percentage for D
+ * 
+ * the correct answer gets  a higher vote remaining votes randomly distributed among the incorrect option
  */
 public class AskTheAudience extends Lifeline {
+    
+    private final Random random = new Random();  // used to generate random values
 
     @Override
     public void use(Question question) {
-        if (used) {
-            System.out.println("Ask The Audience lifeline already used.");
-            return;
+        // to statisfy abstract class 
+        
+    }
+    /*
+    this method returns an array of audience vote percentage for each option
+    */
+    public int [] getAudienceVote(Question question)
+    {
+        if(used)
+        {
+            return null; 
         }
-
-        used = true;
-
-        Random rand = new Random();
-
-        String correct = question.getCorrectAnswer();
-        String[] options = question.getOptions();
-        Map<String, Integer> voteMap = new LinkedHashMap<>();
-
-        String correctOptionFull = "";
-        for (String opt : options) {
-            if (opt.charAt(0) == correct.charAt(0)) {
-                correctOptionFull = opt;
-                break;
+        used = true; 
+        
+        int [] votes = new int[4];  // array to store the 4 percentages
+        
+        int correctIndex = question.getCorrectAnswer().charAt(0) - 'A';  // get index for correct answer
+        
+        // assign 50% -70% to the correct answer to simulate higher vote
+        votes[correctIndex] = 50 + random.nextInt(21); // 50 to 70 inclusive
+        
+        int remaining = 100 - votes[correctIndex];  //remaining votes to distribute
+        
+        int count = 0; // track how many incorrect options we have filled
+        // loop through all options to assign leftover votes
+        for(int i = 0; i < 4; i++)
+        {
+            if(i == correctIndex) continue;  // skip correct answer
+            
+            if(count == 2)
+            {
+                votes[i] = remaining;  // for the last incorrect option give it whatever votes are left
             }
+            else
+            {
+                // randomly assign some of the remaining votes
+                votes[i] = random.nextInt(remaining + 1); 
+                remaining -= votes[i];  // decrease leftover votes
+            }
+            count++; 
         }
         
-        // Assign higher chance to the correct option
-        int correctVotes = rand.nextInt(21) + 40; // 40-60 for correct answer
-        int remainingVotes = 100 - correctVotes;
-
-        // Fill remaining votes with random percentages
-        List<String> wrongOptions = new ArrayList<>();
-        for (String opt : options) {
-            if (opt.charAt(0) != correct.charAt(0)) {
-                wrongOptions.add(opt);
-            }
-        }
-
-        int w1 = rand.nextInt(remainingVotes + 1);
-        int w2 = rand.nextInt(remainingVotes - w1 + 1);
-        int w3 = remainingVotes - w1 - w2;
-
-        Collections.shuffle(wrongOptions);
-
-        // Store the votes in a map
-        voteMap.put(correctOptionFull, correctVotes);
-        voteMap.put(wrongOptions.get(0), w1);
-        voteMap.put(wrongOptions.get(1), w2);
-        voteMap.put(wrongOptions.get(2), w3);
-
-        System.out.println("Audience has voted:");
-        for (Map.Entry<String, Integer> entry : voteMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue() + "%");
-        }
+        return votes; 
     }
 }
