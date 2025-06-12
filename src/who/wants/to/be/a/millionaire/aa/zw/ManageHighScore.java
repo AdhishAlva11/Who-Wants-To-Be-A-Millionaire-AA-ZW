@@ -8,8 +8,6 @@ package who.wants.to.be.a.millionaire.aa.zw;
  *
  * @author Adhis
  */
-import java.io.*;
-import java.util.*;
 import java.sql.*;
 
 

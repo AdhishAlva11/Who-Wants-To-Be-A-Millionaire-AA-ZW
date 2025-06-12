@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * This class controls the quiz logic(game flow) it manages questions, checks
- * answers, tracks scores and player progress seperates logic from GUI
+ * answers, tracks scores and player progress separates logic from GUI
  *
  * @author Adhis
  */

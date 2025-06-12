@@ -8,12 +8,8 @@ package who.wants.to.be.a.millionaire.aa.zw;
  *
  * @author Adhis
  */
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class SwitchQuestion extends Lifeline {
 
