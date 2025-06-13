@@ -2,27 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/Question.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/ManageHighScore.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/Player.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/DBManager.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/LeaderBoardWindow.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/FiftyFifty.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/QuestionBank.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/SwitchQuestion.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/GamePanel.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/Main.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/Lifeline.java</file>
-            <file>file:/C:/Users/Adhis/Documents/AUT%202025/Program%20Design%20&amp;%20Construction/Assignment%201%20Maven%20to%20Ant%20Switch/Who%20Wants%20To%20Be%20A%20Millionaire%20AA%20ZW/src/who/wants/to/be/a/millionaire/aa/zw/AskTheAudience.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/Player.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/QuestionBank.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/UIConstantsGUI.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/GameOverDialog.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/Main.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/DBManager.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/AskTheAudience.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/Question.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/GamePanel.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/Lifeline.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/SwitchQuestion.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/QuizController.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/LeaderBoardWindow.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/FiftyFifty.java</file>
+            <file>file:/C:/Users/ziraa/OneDrive%20-%20AUT%20University/Uni%20Info/2025/Semester%201/Program%20Design%20and%20Construction%20S1/Netbeans%20Files/WWTBAM/Who-Wants-To-Be-A-Millionaire-AA-ZW/src/who/wants/to/be/a/millionaire/aa/zw/ManageHighScore.java</file>
         </group>
->>>>>>> b2af1e4b9c4c5c3a7e6c29e292188580b5763f4b
->>>>>>> 0f8a1e61db2708f1086ac0e412da26cc238bac8f
     </open-files>
 </project-private>
